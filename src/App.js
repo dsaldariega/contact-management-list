@@ -1,26 +1,3 @@
-<<<<<<< Updated upstream
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-=======
 import { useEffect, useState } from "react";
 import "./App.css";
 import AddContact from "./components/AddContact";
@@ -50,10 +27,8 @@ function App() {
   const handleEdit = (e) => {
     console.log("%c Line:28 🍧 e", "color:#b03734", e);
     // setIsEditing(true);
-    //fix setIsEditing 
+    //fix setIsEditing
   };
-
-
 
   return (
     <Routes>
@@ -70,7 +45,6 @@ function App() {
       <Route path="/add-contact" element={<AddContact />}></Route>
       <Route path="/edit-contact" element={<ContactForm />}></Route>
     </Routes>
->>>>>>> Stashed changes
   );
 }
 
