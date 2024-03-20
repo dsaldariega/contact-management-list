@@ -1,8 +1,6 @@
-import { Button } from "@mui/base";
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
 
-const AddContact = () => {
+const Modal = () => {
   return (
     <div className="container">
       <div>
@@ -23,16 +21,16 @@ const AddContact = () => {
       </div>
       <div className="modal-footer">
         <Link to="/contacts">
-          <Button type="button" variant="contained">
+          <button type="button" className="btn btn-danger">
             Cancel
-          </Button>
+          </button>
         </Link>
-        <Button type="button" variant="contained">
+        <button type="button" className="btn btn-primary">
           Save
-        </Button>
+        </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddContact;
+export default Modal

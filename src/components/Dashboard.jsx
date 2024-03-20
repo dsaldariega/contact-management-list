@@ -1,8 +1,18 @@
 import React from "react";
-import Contacts from "./Contacts";
+import TableContacts from "./TableContacts";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import CardView from "./CardView";
 
-export const Dashboard = ({ contacts, handleEdit }) => {
+export const Dashboard = ({
+  contacts,
+  handleEdit,
+  handleAdd,
+  handleDelete,
+  handleCardView,
+  handleTableView,
+  isCardView,
+}) => {
   return (
     <div className="container">
       <div>
@@ -11,16 +21,22 @@ export const Dashboard = ({ contacts, handleEdit }) => {
       </div>
       <div>
         <Link to="/add-contact">
-          <button
-            type="button"
-            className="btn btn-primary"
-            //   onClick={handleAddContact}
-          >
+          <Button variant="contained" onClick={handleAdd}>
             Add New Contact
-          </button>
+          </Button>
         </Link>
+        <Button onClick={handleCardView}>Card View</Button>
+        <Button onClick={handleTableView}>Table View</Button>
       </div>
-      <Contacts contacts={contacts} handleEdit={handleEdit} />
+      {!isCardView ? (
+        <TableContacts
+          contacts={contacts}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      ) : (
+        <CardView contacts={contacts} />
+      )}
     </div>
   );
 };

@@ -7,8 +7,7 @@ import ContactForm from "./components/ContactForm";
 
 function App() {
   const [contacts, setContacts] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  console.log("%c Line:12 🥚 isEditing", "color:#33a5ff", isEditing);
+  const [isCardView, setIsCardView] = useState(false);
 
   useEffect(() => {
     const getContacts = async () => {
@@ -24,10 +23,21 @@ function App() {
     return data;
   };
 
-  const handleEdit = (e) => {
-    console.log("%c Line:28 🍧 e", "color:#b03734", e);
-    // setIsEditing(true);
-    //fix setIsEditing
+  const handleEdit = (id, name) => {
+    console.log("%c Line:26 🍪 id", "color:#f5ce50", id);
+    console.log("%c Line:26 🍬 name", "color:#33a5ff", name);
+  };
+
+  const handleDelete = (id) => {
+    console.log("%c Line:31 🍐 id", "color:#ea7e5c", id);
+  };
+
+  const handleCardView = () => {
+    setIsCardView(true);
+  };
+
+  const handleTableView = () => {
+    setIsCardView(false);
   };
 
   return (
@@ -38,7 +48,10 @@ function App() {
           <Dashboard
             contacts={contacts}
             handleEdit={handleEdit}
-            // handleAddContact={handleAddContact}
+            handleDelete={handleDelete}
+            handleCardView={handleCardView}
+            handleTableView={handleTableView}
+            isCardView={isCardView}
           />
         }
       ></Route>
