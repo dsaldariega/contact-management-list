@@ -3,6 +3,7 @@ import TableContacts from "./TableContacts";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CardView from "./CardView";
+import ModalView from "./ModalView";
 
 export const Dashboard = ({
   contacts,
@@ -37,6 +38,7 @@ export const Dashboard = ({
       ) : (
         <CardView contacts={contacts} />
       )}
+      <ModalView/>
     </div>
   );
 };
