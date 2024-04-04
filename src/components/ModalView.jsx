@@ -7,6 +7,8 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const ModalView = ({ contacts }) => {
   const [open, setOpen] = useState(false);
@@ -37,7 +39,7 @@ const ModalView = ({ contacts }) => {
   return (
     <div>
       <div>
-        <Button onClick={handleOpen}>Open modal</Button>
+        <Button onClick={handleOpen} variant="contained">Open modal</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -63,16 +65,48 @@ const ModalView = ({ contacts }) => {
       </ListItem>
     </List> */}
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Title
+              Add New Contact
             </Typography>
             <Divider />
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Body
             </Typography>
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "40ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                required
+                id="standard-basic"
+                label="Name"
+                variant="standard"
+              />
+              <TextField
+                required
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+              />
+              <TextField
+                required
+                id="standard-basic"
+                label="Contact Number"
+                variant="standard"
+              />
+            </Box>
             <Divider />
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Footer
-            </Typography>
+            <Link to="/contacts">
+              <Button type="button" variant="contained" color="error" onClick={handleClose}>
+                Cancel
+              </Button>
+            </Link>
+            <Button type="button" variant="contained">
+              Save
+            </Button>
           </Box>
         </Modal>
       </div>

@@ -23,7 +23,7 @@ const AddContact = () => {
       </div>
       <div className="modal-footer">
         <Link to="/contacts">
-          <Button type="button" variant="contained">
+          <Button type="button" variant="contained" color="error">
             Cancel
           </Button>
         </Link>

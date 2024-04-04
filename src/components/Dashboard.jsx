@@ -21,13 +21,17 @@ export const Dashboard = ({
         New Contact button.
       </div>
       <div>
-        <Link to="/add-contact">
+        {/* <Link to="/add-contact">
           <Button variant="contained" onClick={handleAdd}>
             Add New Contact
           </Button>
-        </Link>
-        <Button onClick={handleCardView}>Card View</Button>
-        <Button onClick={handleTableView}>Table View</Button>
+        </Link> */}
+        <ModalView />
+        {!isCardView ? (
+          <Button onClick={handleCardView}>Card View</Button>
+        ) : (
+          <Button onClick={handleTableView}>Table View</Button>
+        )}
       </div>
       {!isCardView ? (
         <TableContacts
@@ -38,7 +42,6 @@ export const Dashboard = ({
       ) : (
         <CardView contacts={contacts} />
       )}
-      <ModalView/>
     </div>
   );
 };
