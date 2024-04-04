@@ -39,7 +39,7 @@ const ModalView = ({ contacts }) => {
   return (
     <div>
       <div>
-        <Button onClick={handleOpen} variant="contained">Open modal</Button>
+        <Button onClick={handleOpen} variant="contained">Add New Contact</Button>
         <Modal
           open={open}
           onClose={handleClose}
