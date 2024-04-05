@@ -10,11 +10,8 @@ import ListItemText from "@mui/material/ListItemText";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ModalView = ({ contacts }) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const ModalView = ({ open, handleClose, isEditing, contacts, editContact }) => {
+  console.log("%c Line:14 🧀 isEditing", "color:#ffdd4d", isEditing);
   const style = {
     position: "absolute",
     top: "50%",
@@ -26,20 +23,11 @@ const ModalView = ({ contacts }) => {
     boxShadow: 20,
     p: 4,
   };
-
-  const styleDiv = {
-    py: 0,
-    width: "100%",
-    maxWidth: 360,
-    borderRadius: 2,
-    border: "1px solid",
-    borderColor: "divider",
-    backgroundColor: "background.paper",
-  };
+  const { name, email, contact_number } = editContact;
+  console.log("%c Line:27 🌰 name", "color:#465975", name);
   return (
     <div>
       <div>
-        <Button onClick={handleOpen} variant="contained">Add New Contact</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -47,30 +35,10 @@ const ModalView = ({ contacts }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            {/* <List sx={styleDiv}>
-      <ListItem>
-        <ListItemText primary="Full width variant below" />
-      </ListItem>
-      
-      <ListItem>
-        <ListItemText primary="Inset variant below" />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemText primary="Middle variant below" />
-      </ListItem>
-      <Divider variant="middle" component="li" />
-      <ListItem>
-        <ListItemText primary="List item" />
-      </ListItem>
-    </List> */}
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Add New Contact
+              {isEditing ? "Edit Contact" : "Add New Contact"}
             </Typography>
             <Divider />
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Body
-            </Typography>
             <Box
               component="form"
               sx={{
@@ -82,31 +50,39 @@ const ModalView = ({ contacts }) => {
               <TextField
                 required
                 id="standard-basic"
-                label="Name"
+                // label="Name"
                 variant="standard"
+                value={isEditing ? name : ""}
               />
               <TextField
                 required
                 id="standard-basic"
-                label="Email"
+                // label="Email"
                 variant="standard"
+                value={isEditing ? email : ""}
               />
               <TextField
                 required
                 id="standard-basic"
                 label="Contact Number"
                 variant="standard"
+                value={isEditing ? contact_number : ""}
               />
             </Box>
             <Divider />
-            <Link to="/contacts">
-              <Button type="button" variant="contained" color="error" onClick={handleClose}>
+            <Box component="form">
+              <Button
+                type="button"
+                variant="contained"
+                color="error"
+                onClick={handleClose}
+              >
                 Cancel
               </Button>
-            </Link>
-            <Button type="button" variant="contained">
-              Save
-            </Button>
+              <Button type="button" variant="contained">
+                Save
+              </Button>
+            </Box>
           </Box>
         </Modal>
       </div>

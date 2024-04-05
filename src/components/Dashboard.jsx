@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TableContacts from "./TableContacts";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -16,6 +16,11 @@ export const Dashboard = ({
   handleDelete,
   handleView,
   isContactView,
+  open,
+  handleOpen,
+  handleClose,
+  isEditing,
+  editContact
 }) => {
   return (
     <div className="container">
@@ -24,17 +29,16 @@ export const Dashboard = ({
         New Contact button.
       </div>
       <div>
-        {/* <Link to="/add-contact">
-          <Button variant="contained" onClick={handleAdd}>
-            Add New Contact
-          </Button>
-        </Link> */}
-        <ModalView />
-        {/* {!isCardView ? (
-          <Button onClick={handleCardView}>Card View</Button>
-        ) : (
-          <Button onClick={handleTableView}>Table View</Button>
-        )} */}
+        <ModalView
+          handleClose={handleClose}
+          open={open}
+          isEditing={isEditing}
+          contacts={contacts}
+          editContact={editContact}
+        />
+        <Button onClick={handleOpen} variant="contained">
+          Add New Contact
+        </Button>
         <ToggleButtonGroup
           value={isContactView}
           exclusive

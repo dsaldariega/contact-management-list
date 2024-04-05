@@ -8,6 +8,11 @@ import ContactForm from "./components/ContactForm";
 function App() {
   const [contacts, setContacts] = useState([]);
   const [isContactView, setIsContactView] = useState("card");
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContact, setEditContact] = useState();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     const getContacts = async () => {
@@ -23,9 +28,10 @@ function App() {
     return data;
   };
 
-  const handleEdit = (id, name) => {
-    console.log("%c Line:26 🍪 id", "color:#f5ce50", id);
-    console.log("%c Line:26 🍬 name", "color:#33a5ff", name);
+  const handleEdit = (e, contact) => {
+    setIsEditing(true);
+    handleOpen();
+    setEditContact(contact);
   };
 
   const handleDelete = (id) => {
@@ -50,6 +56,11 @@ function App() {
             handleView={handleView}
             // handleTableView={handleTableView}
             isContactView={isContactView}
+            open={open}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            isEditing={isEditing}
+            editContact={editContact}
           />
         }
       ></Route>

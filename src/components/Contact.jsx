@@ -45,7 +45,8 @@ const Contact = ({
                     <Button
                       variant="contained"
                       color="info"
-                      onClick={() => handleEdit(id, name)}
+                      value="edit"
+                      onClick={(e) => handleEdit(e, contact)}
                     >
                       Edit
                     </Button>
