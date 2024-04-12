@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TableContacts from "./TableContacts";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -20,7 +20,7 @@ export const Dashboard = ({
   handleOpen,
   handleClose,
   isEditing,
-  editContact
+  editContact,
 }) => {
   return (
     <div className="container">

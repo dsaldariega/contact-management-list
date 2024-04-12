@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 
 const Contact = ({
   id,
@@ -42,21 +43,23 @@ const Contact = ({
                   <TableCell align="right">{email}</TableCell>
                   <TableCell align="right">{contact_number}</TableCell>
                   <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      color="info"
-                      value="edit"
-                      onClick={(e) => handleEdit(e, contact)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      onClick={() => handleDelete(id)}
-                    >
-                      Delete
-                    </Button>
+                    <Stack spacing={0.5} direction="row">
+                      <Button
+                        variant="contained"
+                        color="info"
+                        value="edit"
+                        onClick={(e) => handleEdit(e, contact)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleDelete(id)}
+                      >
+                        Delete
+                      </Button>
+                    </Stack>
                   </TableCell>
                 </TableRow>
               );

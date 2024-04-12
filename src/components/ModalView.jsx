@@ -4,14 +4,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import Stack from "@mui/material/Stack";
 
 const ModalView = ({ open, handleClose, isEditing, contacts, editContact }) => {
-  console.log("%c Line:14 🧀 isEditing", "color:#ffdd4d", isEditing);
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,7 +20,9 @@ const ModalView = ({ open, handleClose, isEditing, contacts, editContact }) => {
     p: 4,
   };
   const { name, email, contact_number } = editContact;
-  console.log("%c Line:27 🌰 name", "color:#465975", name);
+  const [newName, setNewName] = useState(name)
+  const [newEmail, setNewEmail] = useState(email)
+  const [newContactNumber, setNewContactNumber] = useState(contact_number)
   return (
     <div>
       <div>
@@ -50,27 +48,30 @@ const ModalView = ({ open, handleClose, isEditing, contacts, editContact }) => {
               <TextField
                 required
                 id="standard-basic"
-                // label="Name"
+                label="Name"
                 variant="standard"
-                value={isEditing ? name : ""}
+                defaultValue={isEditing ? name : ""}
+                onChange={(e)=> setNewName(e.target.value)}
               />
               <TextField
                 required
                 id="standard-basic"
-                // label="Email"
+                label="Email"
                 variant="standard"
-                value={isEditing ? email : ""}
+                defaultValue={isEditing ? email : ""}
+                onChange={(e)=> setNewEmail(e.target.value)}
               />
               <TextField
                 required
                 id="standard-basic"
                 label="Contact Number"
                 variant="standard"
-                value={isEditing ? contact_number : ""}
+                defaultValue={isEditing ? contact_number : ""}
+                onChange={(e)=> setNewContactNumber(e.target.value)}
               />
             </Box>
             <Divider />
-            <Box component="form">
+            <Stack spacing={0.5} direction="row">
               <Button
                 type="button"
                 variant="contained"
@@ -82,7 +83,7 @@ const ModalView = ({ open, handleClose, isEditing, contacts, editContact }) => {
               <Button type="button" variant="contained">
                 Save
               </Button>
-            </Box>
+            </Stack>
           </Box>
         </Modal>
       </div>

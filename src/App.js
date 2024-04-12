@@ -9,7 +9,7 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const [isContactView, setIsContactView] = useState("card");
   const [isEditing, setIsEditing] = useState(false);
-  const [editContact, setEditContact] = useState();
+  const [editContact, setEditContact] = useState([]);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
