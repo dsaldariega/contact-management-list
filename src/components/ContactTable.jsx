@@ -8,8 +8,8 @@ const ContactTable = ({ contacts, onDelete, onEdit }) => {
           <tr>
             {/* <th>ID</th> */}
             <th>Name</th>
+            <th>Contact Number</th>
             <th>Email</th>
-            <th>Phone</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -18,8 +18,8 @@ const ContactTable = ({ contacts, onDelete, onEdit }) => {
             <tr key={contact.id}>
               {/* <td>{contact.id}</td> */}
               <td>{contact.name}</td>
-              <td>{contact.email}</td>
               <td>{contact.phone}</td>
+              <td>{contact.email}</td>
               <td>
                 <button
                   className="btn btn-danger"
