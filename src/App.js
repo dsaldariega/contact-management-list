@@ -4,7 +4,6 @@ import ContactFormContainer from "./containers/ContactFormContainer";
 
 function App() {
   return (
-    <div className="container-fluid">
     <Router>
       <Routes>
         <Route path="/" element={<ContactListContainer />} />
@@ -13,7 +12,6 @@ function App() {
         {/* Additional routes if needed */}
       </Routes>
     </Router>
-    </div>
   );
 }
 

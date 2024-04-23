@@ -1,46 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
+import '../styles/bootstrapstyles.css'
 
-const ContactList = ({
-  contacts,
-  onDelete,
-  onEdit,
-  handleToggleView,
-  isTableView,
-}) => {
-  // const [isTableView, setIsTableView] = useState(true);
-
-  // const handleToggleView = () => {
-  //   setIsTableView((prevIsTableView) => !prevIsTableView);
-  // };
-
+const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
   return (
-    <div>
-      <div className="row">
-        <div className="col-md-12">
-          {isTableView ? (
+    <div className="container-fluid">
+      {isTableView ? (
+        <div className="row">
+          <div className="col-sm-12" style={{ border: "1px" }}>
             <ContactTable
               contacts={contacts}
               onDelete={onDelete}
               onEdit={onEdit}
             />
-          ) : (
-            contacts.map((contact) => (
-              <div
-                className="col-12 col-sm-6 col-md-4 col-lg-3"
-                key={contact.id}
-              >
-                <ContactCard
-                  contact={contact}
-                  onDelete={onDelete}
-                  onEdit={onEdit}
-                />
-              </div>
-            ))
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="row">
+          {contacts.map((contact) => (
+            <div className="col-sm-4" key={contact.id}>
+              <ContactCard
+                key={contact.id}
+                contact={contact}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

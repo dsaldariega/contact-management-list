@@ -35,20 +35,20 @@ const ContactListContainer = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-sm-12">
           <h2>Customer Information</h2>
         </div>
       </div>
         <div className="row">
-          <div className="col-md-10">
+          <div className="col-sm-10">
             <span>
               Your list of customer appear here. To add a new contact, click on
               the Add New Customer button.
             </span>
           </div>
-          <div className="col-md-2">
+          <div className="col-sm-2">
             <Link to="/add">
               <button className="btn btn-primary">Add New Customer</button>
             </Link>
@@ -56,8 +56,8 @@ const ContactListContainer = () => {
         </div>
         {isTableView ? (
           <div className="row">
-            <div className="col-md-10">{""}</div>
-            <div className="col-md-2">
+            <div className="col-sm-10">{""}</div>
+            <div className="col-sm-2">
               <div className="btn-group">
                 <button
                   type="button"
@@ -69,7 +69,7 @@ const ContactListContainer = () => {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-view-list"
+                    className="bi bi-view-list"
                     viewBox="0 0 16 16"
                   >
                     <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2m0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14" />
@@ -85,7 +85,7 @@ const ContactListContainer = () => {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-table"
+                    className="bi bi-table"
                     viewBox="0 0 16 16"
                   >
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
@@ -96,8 +96,8 @@ const ContactListContainer = () => {
           </div>
         ) : (
           <div className="row">
-            <div className="col-md-10">{""}</div>
-            <div className="col-md-2">
+            <div className="col-sm-10">{""}</div>
+            <div className="col-sm-2">
               <div className="btn-group">
                 <button
                   type="button"
@@ -109,7 +109,7 @@ const ContactListContainer = () => {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-view-list"
+                    className="bi bi-view-list"
                     viewBox="0 0 16 16"
                   >
                     <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2m0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14" />
@@ -125,7 +125,7 @@ const ContactListContainer = () => {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-table"
+                    className="bi bi-table"
                     viewBox="0 0 16 16"
                   >
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />

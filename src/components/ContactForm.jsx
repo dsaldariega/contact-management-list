@@ -5,7 +5,7 @@ const ContactForm = ({ contact, onChange, onSubmit }) => {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-sm-6">
           <form onSubmit={onSubmit}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">Name</label>
