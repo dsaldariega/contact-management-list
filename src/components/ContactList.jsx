@@ -1,7 +1,6 @@
 import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
-import '../styles/bootstrapstyles.css'
 
 const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
   return (
