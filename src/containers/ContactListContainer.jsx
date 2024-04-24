@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ContactList from "../components/ContactList";
 import { deleteContact, getAllContacts } from "../api/contactApi";
+import ContactFormContainer from "./ContactFormContainer";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
@@ -49,9 +50,10 @@ const ContactListContainer = () => {
             </span>
           </div>
           <div className="col-sm-2">
-            <Link to="/add">
+            {/* <Link to="/add" className="btn btn-primary">
               <button className="btn btn-primary">Add New Customer</button>
-            </Link>
+            </Link> */}
+            <ContactFormContainer/>
           </div>
         </div>
         {isTableView ? (

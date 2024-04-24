@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ContactForm from "../components/ContactForm";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { getContactById, saveContact, updateContact } from "../api/contactApi";
+import { ContactModalForm } from "../components/ContactModalForm";
 
 function ContactFormContainer() {
   const [contact, setContact] = useState({ name: "", email: "", phone: "" });
@@ -39,11 +39,22 @@ function ContactFormContainer() {
   };
 
   return (
-    <ContactForm
-      contact={contact}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    />
+    <div>
+      <Link
+        type="button"
+        className="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        to="/test"
+      >
+        Launch demo modal
+      </Link>
+      <ContactModalForm
+        contact={contact}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
+    </div>
   );
 }
 
