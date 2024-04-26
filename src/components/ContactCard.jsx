@@ -1,4 +1,5 @@
 import React from "react";
+import { ContactModalForm } from "./ContactModalForm";
 
 const ContactCard = ({ contact, onDelete, onEdit }) => {
   return (
@@ -13,8 +14,14 @@ const ContactCard = ({ contact, onDelete, onEdit }) => {
           Delete
         </button>
         <button
+        type="button"
           className="btn btn-primary ms-2"
-          onClick={() => onEdit(contact.id)}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          // id="editOnCard"
+          onClick={(e) => onEdit(
+            // contact.id, 
+            e)}
         >
           Edit
         </button>

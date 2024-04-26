@@ -16,7 +16,6 @@ const ContactTable = ({ contacts, onDelete, onEdit }) => {
         <tbody>
           {contacts.map((contact) => (
             <tr key={contact.id}>
-              {/* <td>{contact.id}</td> */}
               <td>{contact.name}</td>
               <td>{contact.phone}</td>
               <td>{contact.email}</td>
@@ -29,7 +28,9 @@ const ContactTable = ({ contacts, onDelete, onEdit }) => {
                 </button>
                 <button
                   className="btn btn-primary ms-1"
-                  onClick={() => onEdit(contact.id)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={(e) => onEdit(e, contact.id)}
                 >
                   Edit
                 </button>

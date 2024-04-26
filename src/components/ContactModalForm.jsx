@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export const ContactModalForm = ({ contact, onChange, onSubmit }) => {
+export const ContactModalForm = ({ contact, setContact, modalTitle, contactId, onSubmit, onChange }) => {
+
   return (
     <div
       className="modal fade"
       id="exampleModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
@@ -15,7 +15,7 @@ export const ContactModalForm = ({ contact, onChange, onSubmit }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+                {modalTitle !== 'addNewContact' ?  'Edit Contact' : 'Add New Contact' }
               </h1>
               <button
                 type="button"
@@ -27,7 +27,7 @@ export const ContactModalForm = ({ contact, onChange, onSubmit }) => {
             <div className="modal-body">
               <div className="container-fluid">
                 <div className="row justify-content-center">
-                  <div className="col-sm-6">
+                  <div className="col-sm-12">
                     <div className="mb-3">
                       <label htmlFor="name" className="form-label">
                         Name
@@ -76,10 +76,10 @@ export const ContactModalForm = ({ contact, onChange, onSubmit }) => {
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close

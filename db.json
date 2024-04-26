@@ -1,52 +1,10 @@
 {
   "contacts": [
     {
-      "id": "5cb0",
-      "name": "asd",
-      "email": "asd@asd.com",
-      "phone": "1231231"
-    },
-    {
-      "id": "db39",
-      "name": "sda",
-      "email": "qweqwe@gvmil.com",
-      "phone": "asdoaio12"
-    },
-    {
-      "id": "1dc5",
-      "name": "sda",
-      "email": "qweqwe@gvmil.com",
-      "phone": "asdoaio12"
-    },
-    {
-      "id": "985b",
-      "name": "sda",
-      "email": "qweqwe@gvmil.com",
-      "phone": "asdoaio12"
-    },
-    {
-      "id": "4060",
+      "id": "305f",
       "name": "asd",
       "email": "aaaaa@asd.com",
-      "phone": "1231231"
-    },
-    {
-      "id": "9017",
-      "name": "test note",
-      "email": "test@gma.com",
-      "phone": "123123aaa"
-    },
-    {
-      "id": "d143",
-      "name": "watdaheal",
-      "email": "aaaaa@asd.com",
-      "phone": "123123123123"
-    },
-    {
-      "id": "0ec1",
-      "name": "watdaheal",
-      "email": "aaaaa@asd.com",
-      "phone": "123123123123"
+      "phone": "sssss"
     }
   ]
 }

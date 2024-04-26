@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
 import { getContactById, saveContact, updateContact } from "../api/contactApi";
 import { ContactModalForm } from "../components/ContactModalForm";
+import Swal from "sweetalert2";
 
-function ContactFormContainer() {
+function ContactFormContainer({ modalTitle, setModalTitle, contactId, contacts, setContacts }) {
   const [contact, setContact] = useState({ name: "", email: "", phone: "" });
-  const { id } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (id) {
+    if (contactId) {
       // Fetch contact details if editing an existing contact
-      getContactById(id)
+      getContactById(contactId)
         .then((data) => setContact(data))
         .catch((error) => console.error("Error fetching contact: ", error));
     }
-  }, [id]);
+  }, [contactId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContact((prevContact) => ({ ...prevContact, [name]: value }));
   };
 
+  const handleModalTitle = (e) => {
+    const title = e.target.id;
+    setModalTitle(title);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (id) {
+      if (contactId) {
         // Update existing contact if ID exists
-        await updateContact(id, contact);
+        await updateContact(contactId, contact);
+        
+        Swal.fire("User has been updated!");
       } else {
         // Save new contact if no ID exists
         await saveContact(contact);
+        Swal.fire("User has been added!");
       }
-      navigate("/"); // Navigate to contact list page after successful submission
     } catch (error) {
       console.error("Error saving contact: ", error);
     }
@@ -40,19 +45,23 @@ function ContactFormContainer() {
 
   return (
     <div>
-      <Link
+      <button
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        to="/test"
+        onClick={(e) => handleModalTitle(e)}
+        id="addNewContact"
       >
-        Launch demo modal
-      </Link>
+        Add New Contact
+      </button>
       <ContactModalForm
         contact={contact}
+        setContact={setContact}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        modalTitle={modalTitle}
+        contactId={contactId}
       />
     </div>
   );

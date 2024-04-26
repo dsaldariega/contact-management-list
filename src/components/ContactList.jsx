@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
+import { ContactModalForm } from "./ContactModalForm";
 
 const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
+  
   return (
     <div className="container-fluid">
       {isTableView ? (
