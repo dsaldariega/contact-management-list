@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
-import { ContactModalForm } from "./ContactModalForm";
 
-const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
+const ContactList = ({ contacts, onDelete, handleEdit, isTableView }) => {
   
   return (
     <div className="container-fluid">
@@ -13,7 +12,7 @@ const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
             <ContactTable
               contacts={contacts}
               onDelete={onDelete}
-              onEdit={onEdit}
+              handleEdit={handleEdit}
             />
           </div>
         </div>
@@ -25,7 +24,7 @@ const ContactList = ({ contacts, onDelete, onEdit, isTableView }) => {
                 key={contact.id}
                 contact={contact}
                 onDelete={onDelete}
-                onEdit={onEdit}
+                handleEdit={handleEdit}
               />
             </div>
           ))}

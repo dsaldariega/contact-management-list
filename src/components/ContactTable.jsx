@@ -1,12 +1,11 @@
 import React from "react";
 
-const ContactTable = ({ contacts, onDelete, onEdit }) => {
+const ContactTable = ({ contacts, onDelete, handleEdit }) => {
   return (
     <div className="table-responsive">
       <table className="table table-striped">
         <thead>
           <tr>
-            {/* <th>ID</th> */}
             <th>Name</th>
             <th>Contact Number</th>
             <th>Email</th>
@@ -30,7 +29,8 @@ const ContactTable = ({ contacts, onDelete, onEdit }) => {
                   className="btn btn-primary ms-1"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  onClick={(e) => onEdit(e, contact.id)}
+                  onClick={(e) => {handleEdit(e, contact.id)
+                  }}
                 >
                   Edit
                 </button>

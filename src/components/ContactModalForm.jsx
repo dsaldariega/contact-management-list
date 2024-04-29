@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ContactModalForm = ({ contact, setContact, modalTitle, contactId, onSubmit, onChange }) => {
+export const ContactModalForm = ({ contact, modalTitle, onSubmit, onChange }) => {
 
   return (
     <div
@@ -15,7 +15,7 @@ export const ContactModalForm = ({ contact, setContact, modalTitle, contactId, o
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                {modalTitle !== 'addNewContact' ?  'Edit Contact' : 'Add New Contact' }
+                {modalTitle}
               </h1>
               <button
                 type="button"

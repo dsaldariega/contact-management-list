@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ContactList from "../components/ContactList";
-import { deleteContact, getAllContacts } from "../api/contactApi";
+import {
+  deleteContact,
+  getAllContacts,
+  getContactById,
+  saveContact,
+  updateContact,
+} from "../api/contactApi";
 import ContactFormContainer from "./ContactFormContainer";
 import Swal from "sweetalert2";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
-  console.log("%c Line:10 🍡 contacts", "color:#33a5ff", contacts);
+  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
   const [contactId, setContactId] = useState("");
   const [isTableView, setIsTableView] = useState(true);
   const [modalTitle, setModalTitle] = useState("");
@@ -18,10 +24,60 @@ const ContactListContainer = () => {
       .catch((error) => console.error("Error fetching contacts: ", error));
   }, []);
 
-  const handleEdit = (e, id) => {
-    const title = e.target.id;
-    setModalTitle(title);
-    setContactId(id);
+  useEffect(() => {
+    if (contactId) {
+      // Fetch contact details if editing an existing contact
+      getContactById(contactId)
+        .then((data) => setContact(data))
+        .catch((error) => console.error("Error fetching contact: ", error));
+    }
+  }, [contactId]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContact((prevContact) => ({ ...prevContact, [name]: value }));
+  };
+
+  const handleAddContact = () => {
+    setContact({ name: "", email: "", phone: "" }); // Clear form fields
+    setContactId(""); // Reset contactId to indicate adding a new contact
+    setModalTitle("Add New Contact"); // Optionally, set the modal title to indicate adding a new contact
+  };
+
+  const handleEdit = async (e, id) => {
+    try {
+      setModalTitle('Edit Contact');
+      setContactId(id);
+      
+      // Fetch the updated contact data
+      const updatedContact = await getContactById(id);
+      setContact(updatedContact);
+    } catch (error) {
+      console.error("Error editing contact: ", error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (contactId) {
+        // Update existing contact if ID exists
+        await updateContact(contactId, contact);
+        setContacts((prevContacts) =>
+          prevContacts.map((prevContact) =>
+            prevContact.id === contactId ? contact : prevContact
+          )
+        );
+        Swal.fire("User has been updated!");
+      } else {
+        // Save new contact if no ID exists
+        const newContact = await saveContact(contact);
+        setContacts((prevContacts) => [...prevContacts, newContact]);
+        Swal.fire("User has been added!");
+      }
+    } catch (error) {
+      console.error("Error saving contact: ", error);
+    }
   };
 
   const handleDelete = async (contactId) => {
@@ -36,12 +92,12 @@ const ContactListContainer = () => {
         confirmButtonText: "Yes, delete it!",
       });
       if (result.isConfirmed) {
+        await deleteContact(contactId);
         await Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
           icon: "success",
         });
-        await deleteContact(contactId);
         setContacts((prevContacts) =>
           prevContacts.filter((contact) => contact.id !== contactId)
         );
@@ -70,15 +126,18 @@ const ContactListContainer = () => {
           </span>
         </div>
         <div className="col-sm-2">
-          {/* <Link to="/add" className="btn btn-primary">
-              <button className="btn btn-primary">Add New Customer</button>
-            </Link> */}
           <ContactFormContainer
             modalTitle={modalTitle}
             setModalTitle={setModalTitle}
             contactId={contactId}
             contacts={contacts}
             setContacts={setContacts}
+            handleSubmit={handleSubmit}
+            contact={contact}
+            setContact={setContact}
+            handleChange={handleChange}
+            handleEdit={handleEdit}
+            handleAddContact={handleAddContact}
           />
         </div>
       </div>
@@ -166,7 +225,7 @@ const ContactListContainer = () => {
       <ContactList
         contacts={contacts}
         onDelete={handleDelete}
-        onEdit={handleEdit}
+        handleEdit={handleEdit}
         handleToggleView={handleToggleView}
         isTableView={isTableView}
       />
