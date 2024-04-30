@@ -16,7 +16,7 @@ const ContactTable = ({ contacts, onDelete, handleEdit }) => {
           {contacts.map((contact) => (
             <tr key={contact.id}>
               <td>{contact.name}</td>
-              <td>{contact.phone}</td>
+              <td>{contact.contact_number}</td>
               <td>{contact.email}</td>
               <td>
                 <button

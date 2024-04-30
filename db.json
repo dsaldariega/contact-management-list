@@ -1,16 +1,10 @@
 {
   "contacts": [
     {
-      "id": "b793",
-      "name": "contact 1",
-      "email": "contact1@email.com",
-      "phone": "0912345678980"
-    },
-    {
-      "id": "6cdf",
-      "name": "contact 2",
-      "email": "contact2@email.com",
-      "phone": "2"
+      "id": "6921",
+      "name": "test",
+      "email": "test@email.com",
+      "contact_number": "1234"
     }
   ]
 }

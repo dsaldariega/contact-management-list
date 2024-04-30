@@ -9,10 +9,15 @@ import {
 } from "../api/contactApi";
 import ContactFormContainer from "./ContactFormContainer";
 import Swal from "sweetalert2";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
-  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
+  const [contact, setContact] = useState({
+    name: "",
+    email: "",
+    contact_number: "",
+  });
   const [contactId, setContactId] = useState("");
   const [isTableView, setIsTableView] = useState(true);
   const [modalTitle, setModalTitle] = useState("");
@@ -39,16 +44,16 @@ const ContactListContainer = () => {
   };
 
   const handleAddContact = () => {
-    setContact({ name: "", email: "", phone: "" }); // Clear form fields
+    setContact({ name: "", email: "", contact_number: "" }); // Clear form fields
     setContactId(""); // Reset contactId to indicate adding a new contact
     setModalTitle("Add New Contact"); // Optionally, set the modal title to indicate adding a new contact
   };
 
   const handleEdit = async (e, id) => {
     try {
-      setModalTitle('Edit Contact');
+      setModalTitle("Edit Contact");
       setContactId(id);
-      
+
       // Fetch the updated contact data
       const updatedContact = await getContactById(id);
       setContact(updatedContact);
@@ -145,38 +150,20 @@ const ContactListContainer = () => {
         <div className="row">
           <div className="col-sm-10">{""}</div>
           <div className="col-sm-2">
-            <div className="btn-group">
+            <div className="btn-group" style={{margin: "4px"}}>
               <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleToggleView}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-view-list"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2m0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14" />
-                </svg>
+                <i className="bi bi-view-list"></i>
               </button>
               <button
                 type="button"
                 className="btn btn-outline-secondary"
                 onClick={handleToggleView}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-table"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
-                </svg>
+                <i className="bi bi-table"></i>
               </button>
             </div>
           </div>

@@ -20,14 +20,14 @@ function ContactFormContainer({
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         onClick={handleAddContact}
-        id="add"
+        style={{margin: '4px'}}
       >
         Add New Contact
       </button>
       <ContactModalForm
         contact={contact}
         setContact={setContact}
-        onChange={handleChange}
+        handleChange={handleChange}
         onSubmit={handleSubmit}
         modalTitle={modalTitle}
         contactId={contactId}

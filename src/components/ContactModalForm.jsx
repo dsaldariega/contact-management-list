@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ContactModalForm = ({ contact, modalTitle, onSubmit, onChange }) => {
+export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }) => {
 
   return (
     <div
@@ -38,7 +38,21 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, onChange }) =>
                         id="name"
                         name="name"
                         value={contact.name}
-                        onChange={onChange}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="contact_number" className="form-label">
+                        Contact Number
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="contact_number"
+                        name="contact_number"
+                        value={contact.contact_number}
+                        onChange={handleChange}
                         required
                       />
                     </div>
@@ -52,21 +66,7 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, onChange }) =>
                         id="email"
                         name="email"
                         value={contact.email}
-                        onChange={onChange}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="phone" className="form-label">
-                        Phone
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        name="phone"
-                        value={contact.phone}
-                        onChange={onChange}
+                        onChange={handleChange}
                         required
                       />
                     </div>

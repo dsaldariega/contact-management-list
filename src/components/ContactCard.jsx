@@ -6,7 +6,7 @@ const ContactCard = ({ contact, onDelete, handleEdit }) => {
       <div className="card-body">
         <h5 className="card-title">{contact.name}</h5>
         <p className="card-text">Email: {contact.email}</p>
-        <p className="card-text">Phone: {contact.phone}</p>
+        <p className="card-text">Contact Number: {contact.contact_number}</p>
       </div>
       <div className="card-footer">
         <button className="btn btn-danger" onClick={() => onDelete(contact.id)}>
