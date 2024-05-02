@@ -23,16 +23,17 @@ const ContactTable = ({ contacts, onDelete, handleEdit }) => {
                   className="btn btn-danger"
                   onClick={() => onDelete(contact.id)}
                 >
-                  Delete
+                  <i className="bi bi-trash3"></i>
                 </button>
                 <button
                   className="btn btn-primary ms-1"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  onClick={(e) => {handleEdit(e, contact.id)
+                  onClick={(e) => {
+                    handleEdit(e, contact.id);
                   }}
                 >
-                  Edit
+                  <i className="bi bi-pencil"></i>
                 </button>
               </td>
             </tr>

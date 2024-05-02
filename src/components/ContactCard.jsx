@@ -10,17 +10,18 @@ const ContactCard = ({ contact, onDelete, handleEdit }) => {
       </div>
       <div className="card-footer">
         <button className="btn btn-danger" onClick={() => onDelete(contact.id)}>
-          Delete
+          <i className="bi bi-trash3"></i>
         </button>
         <button
           type="button"
           className="btn btn-primary ms-2"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          onClick={(e) => {handleEdit(e, contact.id)
+          onClick={(e) => {
+            handleEdit(e, contact.id);
           }}
         >
-          Edit
+          <i className="bi bi-pencil"></i>
         </button>
       </div>
     </div>
