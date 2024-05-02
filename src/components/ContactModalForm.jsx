@@ -1,7 +1,12 @@
 import React from "react";
 
-export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }) => {
-
+export const ContactModalForm = ({
+  contact,
+  modalTitle,
+  onSubmit,
+  handleChange,
+}) => {
+  const { name, email, contact_number } = contact;
   return (
     <div
       className="modal fade"
@@ -37,7 +42,7 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }
                         className="form-control"
                         id="name"
                         name="name"
-                        value={contact.name}
+                        value={name}
                         onChange={handleChange}
                         required
                       />
@@ -51,7 +56,7 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }
                         className="form-control"
                         id="contact_number"
                         name="contact_number"
-                        value={contact.contact_number}
+                        value={contact_number}
                         onChange={handleChange}
                         required
                       />
@@ -65,13 +70,12 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }
                         className="form-control"
                         id="email"
                         name="email"
-                        value={contact.email}
+                        value={email}
                         onChange={handleChange}
                         required
                       />
                     </div>
-                    <div className="mb-3">
-                    </div>
+                    <div className="mb-3"></div>
                   </div>
                 </div>
               </div>
@@ -84,7 +88,11 @@ export const ContactModalForm = ({ contact, modalTitle, onSubmit, handleChange }
               >
                 Close
               </button>
-              <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
                 Save
               </button>
             </div>

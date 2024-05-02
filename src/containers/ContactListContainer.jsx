@@ -172,7 +172,7 @@ const ContactListContainer = () => {
         <div className="row">
           <div className="col-sm-10">{""}</div>
           <div className="col-sm-2">
-            <div className="btn-group" style={{ margin: "4px" }}>
+            <div className="btn-group">
               <button
                 type="button"
                 className="btn btn-outline-secondary"
