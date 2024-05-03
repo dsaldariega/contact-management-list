@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ContactModalForm } from "../components/ContactModalForm";
+import { getContactById } from "../api/contactApi";
 
 function ContactFormContainer({
-  modalTitle,
-  setModalTitle,
-  contactId,
   contact,
   setContact,
   handleSubmit,
   handleChange,
   handleEdit,
-  handleAddContact
 }) {
+  const [modalTitle, setModalTitle] = useState("");
+
+  const handleAddContact = (param) => {
+    setContact({ name: "", email: "", contact_number: "" }); // Clear form fields
+  };
   return (
     <div>
       <button
@@ -20,21 +22,18 @@ function ContactFormContainer({
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         onClick={handleAddContact}
-        style={{margin: '4px'}}
+        style={{ margin: "4px" }}
       >
         Add New Contact
       </button>
       <ContactModalForm
         contact={contact}
         setContact={setContact}
-        handleChange={handleChange}
-        onSubmit={handleSubmit}
+        handleSubmit={handleSubmit}
         modalTitle={modalTitle}
-        contactId={contactId}
         handleEdit={handleEdit}
         setModalTitle={setModalTitle}
       />
-      
     </div>
   );
 }

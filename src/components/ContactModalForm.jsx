@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const ContactModalForm = ({
-  contact,
   modalTitle,
-  onSubmit,
-  handleChange,
+  handleSubmit,
+  contact,
+  setContact,
 }) => {
   const { name, email, contact_number } = contact;
+  // const validationSchema = Yup.object({
+  //   name: Yup.string().required("Name is required"),
+  //   email: Yup.string().required("Email is required"),
+  //   contact_number: Yup.number().required("Contact Number is required"),
+  // });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContact((prevContact) => ({ ...prevContact, [name]: value }));
+  };
+
   return (
     <div
       className="modal fade"
@@ -15,7 +26,7 @@ export const ContactModalForm = ({
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -46,13 +57,14 @@ export const ContactModalForm = ({
                         onChange={handleChange}
                         required
                       />
+                      {/* {errors.name && <p>{errors.name}</p>} */}
                     </div>
                     <div className="mb-3">
                       <label htmlFor="contact_number" className="form-label">
                         Contact Number
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id="contact_number"
                         name="contact_number"
@@ -60,6 +72,7 @@ export const ContactModalForm = ({
                         onChange={handleChange}
                         required
                       />
+                      {/* {errors.contact_number && <p>{errors.contact_number}</p>} */}
                     </div>
                     <div className="mb-3">
                       <label htmlFor="email" className="form-label">
@@ -74,6 +87,7 @@ export const ContactModalForm = ({
                         onChange={handleChange}
                         required
                       />
+                      {/* {errors.email && <p>{errors.email}</p>} */}
                     </div>
                     <div className="mb-3"></div>
                   </div>
@@ -91,7 +105,7 @@ export const ContactModalForm = ({
               <button
                 type="submit"
                 className="btn btn-primary"
-                data-bs-dismiss="modal"
+                // data-bs-dismiss="modal"
               >
                 Save
               </button>

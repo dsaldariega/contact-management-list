@@ -18,6 +18,7 @@ export const saveContact = async (contact) => {
     },
     body: JSON.stringify(contact),
   });
+
   return response.json();
 };
 

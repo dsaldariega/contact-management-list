@@ -2,8 +2,13 @@ import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
 
-const ContactList = ({ contacts, onDelete, handleEdit, isTableView }) => {
-  
+const ContactList = ({
+  contacts,
+  onDelete,
+  handleEdit,
+  isTableView,
+  setContact,
+}) => {
   return (
     <div className="container-fluid">
       {isTableView ? (

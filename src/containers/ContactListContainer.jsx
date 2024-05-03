@@ -13,15 +13,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
+  const [isTableView, setIsTableView] = useState(true);
+  const [contactId, setContactId] = useState("");
   const [contact, setContact] = useState({
     name: "",
     email: "",
     contact_number: "",
   });
-  const [contactId, setContactId] = useState("");
-  const [isTableView, setIsTableView] = useState(true);
-  const [modalTitle, setModalTitle] = useState("");
-
   useEffect(() => {
     // Fetch contacts from the API when the component mounts
     getAllContacts()
@@ -38,20 +36,9 @@ const ContactListContainer = () => {
     }
   }, [contactId]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setContact((prevContact) => ({ ...prevContact, [name]: value }));
-  };
-
-  const handleAddContact = () => {
-    setContact({ name: "", email: "", contact_number: "" }); // Clear form fields
-    setContactId(""); // Reset contactId to indicate adding a new contact
-    setModalTitle("Add New Contact"); // Optionally, set the modal title to indicate adding a new contact
-  };
-
   const handleEdit = async (e, id) => {
     try {
-      setModalTitle("Edit Contact");
+      // setModalTitle("Edit Contact");
       setContactId(id);
 
       // Fetch the updated contact data
@@ -64,24 +51,21 @@ const ContactListContainer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (contactId) {
-        // Update existing contact if ID exists
-        await updateContact(contactId, contact);
-        setContacts((prevContacts) =>
-          prevContacts.map((prevContact) =>
-            prevContact.id === contactId ? contact : prevContact
-          )
-        );
-        Swal.fire("User has been updated!");
-      } else {
-        // Save new contact if no ID exists
-        const newContact = await saveContact(contact);
-        setContacts((prevContacts) => [...prevContacts, newContact]);
-        Swal.fire("User has been added!");
-      }
-    } catch (error) {
-      console.error("Error saving contact: ", error);
+    if (!contactId) {
+      // Save new contact if no ID exists
+      const newContact = await saveContact(contact);
+      setContacts((prevContacts) => [...prevContacts, newContact]);
+      Swal.fire("User has been added!");
+    }
+    if (contactId) {
+      // Update existing contact if ID exists
+      await updateContact(contactId, contact);
+      setContacts((prevContacts) =>
+        prevContacts.map((prevContact) =>
+          prevContact.id === contactId ? contact : prevContact
+        )
+      );
+      Swal.fire("User has been updated!");
     }
   };
 
@@ -97,15 +81,15 @@ const ContactListContainer = () => {
         confirmButtonText: "Yes, delete it!",
       });
       if (result.isConfirmed) {
+        setContacts((prevContacts) =>
+          prevContacts.filter((contact) => contact.id !== contactId)
+        );
         await deleteContact(contactId);
         await Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
           icon: "success",
         });
-        setContacts((prevContacts) =>
-          prevContacts.filter((contact) => contact.id !== contactId)
-        );
       }
     } catch (error) {
       console.error("Error deleting contact: ", error);
@@ -132,17 +116,13 @@ const ContactListContainer = () => {
         </div>
         <div className="col-sm-2">
           <ContactFormContainer
-            modalTitle={modalTitle}
-            setModalTitle={setModalTitle}
             contactId={contactId}
             contacts={contacts}
             setContacts={setContacts}
             handleSubmit={handleSubmit}
+            handleEdit={handleEdit}
             contact={contact}
             setContact={setContact}
-            handleChange={handleChange}
-            handleEdit={handleEdit}
-            handleAddContact={handleAddContact}
           />
         </div>
       </div>
@@ -172,20 +152,20 @@ const ContactListContainer = () => {
         <div className="row">
           <div className="col-sm-10">{""}</div>
           <div className="col-sm-2">
-            <div className="btn-group">
+            <div className="btn-group" style={{ margin: "4px" }}>
               <button
                 type="button"
                 className="btn btn-outline-secondary"
                 onClick={handleToggleView}
               >
-                <i className="bi bi-view-list"/>
+                <i className="bi bi-view-list" />
               </button>
               <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleToggleView}
               >
-                <i className="bi bi-table"/>
+                <i className="bi bi-table" />
               </button>
             </div>
           </div>
@@ -197,6 +177,7 @@ const ContactListContainer = () => {
         handleEdit={handleEdit}
         handleToggleView={handleToggleView}
         isTableView={isTableView}
+        setContact={setContact}
       />
     </div>
   );
