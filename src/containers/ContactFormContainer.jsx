@@ -1,38 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ContactModalForm } from "../components/ContactModalForm";
-import { getContactById } from "../api/contactApi";
 
 function ContactFormContainer({
-  contact,
-  setContact,
   handleSubmit,
-  handleChange,
   handleEdit,
+  isModalOpen,
+  setIsModalOpen,
 }) {
   const [modalTitle, setModalTitle] = useState("");
 
-  const handleAddContact = (param) => {
-    setContact({ name: "", email: "", contact_number: "" }); // Clear form fields
+  const handleAddContact = () => {
+    // Clear form fields
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
   return (
     <div>
       <button
         type="button"
         className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        // data-bs-toggle="modal"
+        // data-bs-target="#modal"
         onClick={handleAddContact}
         style={{ margin: "4px" }}
       >
         Add New Contact
       </button>
       <ContactModalForm
-        contact={contact}
-        setContact={setContact}
         handleSubmit={handleSubmit}
         modalTitle={modalTitle}
         handleEdit={handleEdit}
         setModalTitle={setModalTitle}
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
       />
     </div>
   );

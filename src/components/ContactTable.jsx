@@ -27,8 +27,6 @@ const ContactTable = ({ contacts, onDelete, handleEdit }) => {
                 </button>
                 <button
                   className="btn btn-primary ms-1"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
                   onClick={(e) => {
                     handleEdit(e, contact.id);
                   }}

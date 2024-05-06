@@ -20,6 +20,8 @@ const ContactListContainer = () => {
     email: "",
     contact_number: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     // Fetch contacts from the API when the component mounts
     getAllContacts()
@@ -36,7 +38,8 @@ const ContactListContainer = () => {
     }
   }, [contactId]);
 
-  const handleEdit = async (e, id) => {
+  const handleEdit = async (id) => {
+    setIsModalOpen(true);
     try {
       // setModalTitle("Edit Contact");
       setContactId(id);
@@ -49,11 +52,11 @@ const ContactListContainer = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values) => {
     if (!contactId) {
       // Save new contact if no ID exists
-      const newContact = await saveContact(contact);
+      const newContact = await saveContact(values);
+      setIsModalOpen(false);
       setContacts((prevContacts) => [...prevContacts, newContact]);
       Swal.fire("User has been added!");
     }
@@ -121,8 +124,8 @@ const ContactListContainer = () => {
             setContacts={setContacts}
             handleSubmit={handleSubmit}
             handleEdit={handleEdit}
-            contact={contact}
-            setContact={setContact}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
           />
         </div>
       </div>
@@ -177,7 +180,6 @@ const ContactListContainer = () => {
         handleEdit={handleEdit}
         handleToggleView={handleToggleView}
         isTableView={isTableView}
-        setContact={setContact}
       />
     </div>
   );

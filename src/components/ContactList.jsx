@@ -10,7 +10,7 @@ const ContactList = ({
   setContact,
 }) => {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{ margin: "4px" }}>
       {isTableView ? (
         <div className="row">
           <div className="col-sm-12" style={{ border: "1px" }}>
