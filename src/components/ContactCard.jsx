@@ -17,8 +17,8 @@ const ContactCard = ({ contact, onDelete, handleEdit }) => {
           className="btn btn-primary ms-2"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          onClick={(e) => {
-            handleEdit(e, contact.id);
+          onClick={() => {
+            handleEdit(contact.id);
           }}
         >
           <i className="bi bi-pencil"></i>

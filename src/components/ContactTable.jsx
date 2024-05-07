@@ -28,7 +28,7 @@ const ContactTable = ({ contacts, onDelete, handleEdit }) => {
                 <button
                   className="btn btn-primary ms-1"
                   onClick={(e) => {
-                    handleEdit(e, contact.id);
+                    handleEdit(contact.id);
                   }}
                 >
                   <i className="bi bi-pencil"></i>
