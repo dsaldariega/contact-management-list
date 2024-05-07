@@ -52,10 +52,11 @@ const ContactListContainer = () => {
     }
   };
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!contactId) {
       // Save new contact if no ID exists
-      const newContact = await saveContact(values);
+      const newContact = await saveContact(contact);
       setIsModalOpen(false);
       setContacts((prevContacts) => [...prevContacts, newContact]);
       Swal.fire("User has been added!");
@@ -126,6 +127,8 @@ const ContactListContainer = () => {
             handleEdit={handleEdit}
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
+            contact={contact}
+            setContact={setContact}
           />
         </div>
       </div>

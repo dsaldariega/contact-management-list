@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactCard = ({ contact, onDelete, handleEdit }) => {
   return (
-    <div className="card">
+    <div className="card" style={{ margin: "2px" }}>
       <div className="card-body">
         <h5 className="card-title">{contact.name}</h5>
         <p className="card-text">Email: {contact.email}</p>
@@ -15,8 +15,6 @@ const ContactCard = ({ contact, onDelete, handleEdit }) => {
         <button
           type="button"
           className="btn btn-primary ms-2"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
           onClick={() => {
             handleEdit(contact.id);
           }}

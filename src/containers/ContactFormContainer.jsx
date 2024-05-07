@@ -6,6 +6,8 @@ function ContactFormContainer({
   handleEdit,
   isModalOpen,
   setIsModalOpen,
+  contact,
+  setContact,
 }) {
   const [modalTitle, setModalTitle] = useState("");
 
@@ -22,8 +24,6 @@ function ContactFormContainer({
       <button
         type="button"
         className="btn btn-primary"
-        // data-bs-toggle="modal"
-        // data-bs-target="#modal"
         onClick={handleAddContact}
         style={{ margin: "4px" }}
       >
@@ -36,6 +36,8 @@ function ContactFormContainer({
         setModalTitle={setModalTitle}
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
+        contact={contact}
+        setContact={setContact}
       />
     </div>
   );
