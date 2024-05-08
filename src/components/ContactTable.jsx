@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactTable = ({ contacts, onDelete, handleEdit }) => {
+const ContactTable = ({ contacts, onDelete, handleEdit, handleView }) => {
   return (
     <div className="table-responsive">
       <table className="table table-striped">
@@ -20,14 +20,20 @@ const ContactTable = ({ contacts, onDelete, handleEdit }) => {
               <td>{contact.email}</td>
               <td>
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-secondary"
+                  onClick={() => handleView(contact.id)}
+                >
+                  <i className="bi bi-eye-fill"></i>
+                </button>
+                <button
+                  className="btn btn-danger ms-2"
                   onClick={() => onDelete(contact.id)}
                 >
                   <i className="bi bi-trash3"></i>
                 </button>
                 <button
                   className="btn btn-primary ms-1"
-                  onClick={(e) => {
+                  onClick={() => {
                     handleEdit(contact.id);
                   }}
                 >

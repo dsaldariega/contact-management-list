@@ -8,6 +8,7 @@ const ContactList = ({
   handleEdit,
   isTableView,
   setContact,
+  handleView,
 }) => {
   return (
     <div className="container-fluid" style={{ margin: "4px" }}>
@@ -18,6 +19,7 @@ const ContactList = ({
               contacts={contacts}
               onDelete={onDelete}
               handleEdit={handleEdit}
+              handleView={handleView}
             />
           </div>
         </div>
@@ -30,6 +32,7 @@ const ContactList = ({
                 contact={contact}
                 onDelete={onDelete}
                 handleEdit={handleEdit}
+                handleView={handleView}
               />
             </div>
           ))}

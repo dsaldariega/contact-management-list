@@ -10,6 +10,7 @@ import {
 import ContactFormContainer from "./ContactFormContainer";
 import Swal from "sweetalert2";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useNavigate } from "react-router-dom";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
@@ -21,6 +22,7 @@ const ContactListContainer = () => {
     contact_number: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch contacts from the API when the component mounts
@@ -104,11 +106,15 @@ const ContactListContainer = () => {
     setIsTableView((prevIsTableView) => !prevIsTableView);
   };
 
+  const handleView = (id) => {
+    navigate(`/contact/${id}`);
+  };
+
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-12">
-          <h2>Customer Information</h2>
+          <h2>Contacts Information</h2>
         </div>
       </div>
       <div className="row">
@@ -178,6 +184,7 @@ const ContactListContainer = () => {
         </div>
       )}
       <ContactList
+        handleView={handleView}
         contacts={contacts}
         onDelete={handleDelete}
         handleEdit={handleEdit}
