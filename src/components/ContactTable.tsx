@@ -1,6 +1,14 @@
 import React from "react";
 
-const ContactTable: React.FC = ({
+interface ContactTableProps {
+  contacts: Contact[];
+  handleView: (id: string) => void;
+  onDelete: (contactId: string) => Promise<void>;
+  handleEdit: (id: string) => Promise<void>;
+  // isTableView: boolean;
+}
+
+const ContactTable: React.FC<ContactTableProps> = ({
   contacts,
   onDelete,
   handleEdit,

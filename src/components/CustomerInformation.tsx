@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getContactById } from "../api/contactApi";
 import { Link, useParams } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { getContactById } from "../api/contactApi";
 
 export const CustomerInformation: React.FC = () => {
   const [contact, setContact] = useState({

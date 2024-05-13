@@ -1,6 +1,14 @@
 import React from "react";
 
-export const ContactModalForm = ({
+interface ContactModalFormProps {
+  modalTitle: any;
+  handleSubmit: any;
+  setContact: any;
+  contact: any;
+  isModalOpen: any;
+  handleCloseModal: any;
+}
+export const ContactModalForm: React.FC<ContactModalFormProps> = ({
   modalTitle,
   handleSubmit,
   setContact,
@@ -9,9 +17,9 @@ export const ContactModalForm = ({
   handleCloseModal,
 }) => {
   const { name, contact_number, email } = contact;
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setContact((prevContact) => ({ ...prevContact, [name]: value }));
+    setContact((prevContact: any) => ({ ...prevContact, [name]: value }));
   };
 
   return (

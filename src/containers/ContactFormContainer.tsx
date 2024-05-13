@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { ContactModalForm } from "../components/ContactModalForm";
-
-function ContactFormContainer({
+interface ContactFormContainerProps {
+  handleSubmit: any;
+  handleEdit: any;
+  isModalOpen: any;
+  setIsModalOpen: any;
+  contact: any;
+  setContact: any;
+  setContactId: any;
+}
+const ContactFormContainer: React.FC<ContactFormContainerProps> = ({
   handleSubmit,
   handleEdit,
   isModalOpen,
@@ -9,7 +17,7 @@ function ContactFormContainer({
   contact,
   setContact,
   setContactId,
-}) {
+}) => {
   const [modalTitle, setModalTitle] = useState<string>("");
 
   const handleAddContact = () => {
@@ -48,6 +56,6 @@ function ContactFormContainer({
       />
     </div>
   );
-}
+};
 
 export default ContactFormContainer;

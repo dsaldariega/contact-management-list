@@ -1,6 +1,13 @@
 import React from "react";
 
-const ContactCard: React.FC = ({
+interface ContactCardProps {
+  contact: any;
+  onDelete: any;
+  handleEdit: any;
+  handleView: any;
+}
+
+const ContactCard: React.FC<ContactCardProps> = ({
   contact,
   onDelete,
   handleEdit,
