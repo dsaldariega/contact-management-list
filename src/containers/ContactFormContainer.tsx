@@ -8,14 +8,23 @@ function ContactFormContainer({
   setIsModalOpen,
   contact,
   setContact,
+  setContactId,
 }) {
-  const [modalTitle, setModalTitle] = useState("");
+  const [modalTitle, setModalTitle] = useState<string>("");
 
   const handleAddContact = () => {
-    // Clear form fields
     setIsModalOpen(true);
+    // Clear form fields
+    setContactId("");
+    setContact(
+      (contact = {
+        name: "",
+        email: "",
+        contact_number: "",
+      })
+    );
   };
-
+  console.log("%c Line:24 🍌 contact", "color:#ea7e5c", contact);
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -32,8 +41,6 @@ function ContactFormContainer({
       <ContactModalForm
         handleSubmit={handleSubmit}
         modalTitle={modalTitle}
-        handleEdit={handleEdit}
-        setModalTitle={setModalTitle}
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
         contact={contact}

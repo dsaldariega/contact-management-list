@@ -13,13 +13,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate } from "react-router-dom";
 
 const ContactListContainer = () => {
-  const [contacts, setContacts] = useState([]);
-  const [isTableView, setIsTableView] = useState(true);
-  const [contactId, setContactId] = useState("");
-  const [contact, setContact] = useState({
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [isTableView, setIsTableView] = useState<boolean>(true);
+  const [contactId, setContactId] = useState<string>("");
+  const [contact, setContact] = useState<Contact>({
     name: "",
     email: "",
-    contact_number: "",
+    contact_number: 0,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -126,9 +126,7 @@ const ContactListContainer = () => {
         </div>
         <div className="col-sm-2">
           <ContactFormContainer
-            contactId={contactId}
-            contacts={contacts}
-            setContacts={setContacts}
+            setContactId={setContactId}
             handleSubmit={handleSubmit}
             handleEdit={handleEdit}
             isModalOpen={isModalOpen}
@@ -188,7 +186,6 @@ const ContactListContainer = () => {
         contacts={contacts}
         onDelete={handleDelete}
         handleEdit={handleEdit}
-        handleToggleView={handleToggleView}
         isTableView={isTableView}
       />
     </div>

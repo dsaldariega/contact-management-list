@@ -7,7 +7,6 @@ const ContactList = ({
   onDelete,
   handleEdit,
   isTableView,
-  setContact,
   handleView,
 }) => {
   return (

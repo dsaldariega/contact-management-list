@@ -26,7 +26,7 @@ export const ContactModalForm = ({
       <form onSubmit={handleSubmit}>
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header">
+            {/* <div className="modal-header">
               <h1 className="modal-title fs-5">{modalTitle}</h1>
               <button
                 type="button"
@@ -34,7 +34,7 @@ export const ContactModalForm = ({
                 onClick={handleCloseModal}
                 aria-label="Close"
               ></button>
-            </div>
+            </div> */}
             <div className="modal-body">
               <div className="container-fluid">
                 <div className="row justify-content-center">
