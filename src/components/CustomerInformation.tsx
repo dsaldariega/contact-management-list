@@ -3,7 +3,7 @@ import { getContactById } from "../api/contactApi";
 import { Link, useParams } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export const CustomerInformation = () => {
+export const CustomerInformation: React.FC = () => {
   const [contact, setContact] = useState({
     name: "",
     email: "",

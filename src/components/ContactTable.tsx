@@ -1,6 +1,11 @@
 import React from "react";
 
-const ContactTable = ({ contacts, onDelete, handleEdit, handleView }) => {
+const ContactTable: React.FC = ({
+  contacts,
+  onDelete,
+  handleEdit,
+  handleView,
+}) => {
   return (
     <div className="table-responsive">
       <table className="table table-striped">
@@ -13,7 +18,7 @@ const ContactTable = ({ contacts, onDelete, handleEdit, handleView }) => {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((contact) => (
+          {contacts.map((contact: any) => (
             <tr key={contact.id}>
               <td>{contact.name}</td>
               <td>{contact.contact_number}</td>

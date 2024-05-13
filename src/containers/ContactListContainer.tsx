@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate } from "react-router-dom";
 
-const ContactListContainer = () => {
+const ContactListContainer: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isTableView, setIsTableView] = useState<boolean>(true);
   const [contactId, setContactId] = useState<string>("");
@@ -40,7 +40,7 @@ const ContactListContainer = () => {
     }
   }, [contactId]);
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id: string) => {
     setIsModalOpen(true);
     try {
       // setModalTitle("Edit Contact");
@@ -54,7 +54,7 @@ const ContactListContainer = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!contactId) {
       // Save new contact if no ID exists
@@ -75,7 +75,7 @@ const ContactListContainer = () => {
     }
   };
 
-  const handleDelete = async (contactId) => {
+  const handleDelete = async (contactId: string) => {
     try {
       const result = await Swal.fire({
         title: "Are you sure?",
@@ -106,7 +106,7 @@ const ContactListContainer = () => {
     setIsTableView((prevIsTableView) => !prevIsTableView);
   };
 
-  const handleView = (id) => {
+  const handleView = (id: string) => {
     navigate(`/contact/${id}`);
   };
 

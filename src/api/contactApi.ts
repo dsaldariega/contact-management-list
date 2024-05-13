@@ -5,12 +5,12 @@ export const getAllContacts = async () => {
   return response.json();
 };
 
-export const getContactById = async (id) => {
+export const getContactById = async (id: string) => {
   const response = await fetch(`${BASE_URL}/contacts/${id}`);
   return response.json();
 };
 
-export const saveContact = async (contact) => {
+export const saveContact = async (contact: any) => {
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "POST",
     headers: {
@@ -22,7 +22,7 @@ export const saveContact = async (contact) => {
   return response.json();
 };
 
-export const updateContact = async (id, contact) => {
+export const updateContact = async (id: string, contact: any) => {
   const response = await fetch(`${BASE_URL}/contacts/${id}`, {
     method: "PUT",
     headers: {
@@ -33,7 +33,7 @@ export const updateContact = async (id, contact) => {
   return response.json();
 };
 
-export const deleteContact = async (id) => {
+export const deleteContact = async (id: string) => {
   const response = await fetch(`${BASE_URL}/contacts/${id}`, {
     method: "DELETE",
   });

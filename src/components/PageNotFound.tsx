@@ -1,6 +1,6 @@
 import React from "react";
 
-export const PageNotFound = () => {
+export const PageNotFound: React.FC = () => {
   return (
     <div className="container">
       <div className="row fs-2">

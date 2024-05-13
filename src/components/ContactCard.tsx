@@ -1,6 +1,11 @@
 import React from "react";
 
-const ContactCard = ({ contact, onDelete, handleEdit, handleView }) => {
+const ContactCard: React.FC = ({
+  contact,
+  onDelete,
+  handleEdit,
+  handleView,
+}) => {
   return (
     <div
       className="card"

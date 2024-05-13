@@ -2,7 +2,7 @@ import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
 
-const ContactList = ({
+const ContactList: React.FC = ({
   contacts,
   onDelete,
   handleEdit,
@@ -24,7 +24,7 @@ const ContactList = ({
         </div>
       ) : (
         <div className="row">
-          {contacts.map((contact) => (
+          {contacts.map((contact: any) => (
             <div className="col-sm-4" key={contact.id}>
               <ContactCard
                 key={contact.id}
