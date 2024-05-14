@@ -21,13 +21,19 @@ const ContactListContainer: React.FC = () => {
     email: "",
     contact_number: 0,
   });
+  const [error, setError] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch contacts from the API when the component mounts
     getAllContacts()
-      .then((data) => setContacts(data))
+      .then((data) => {
+        if (data.error) {
+          setError("Error fetching contacts");
+        }
+        setContacts(data);
+      })
       .catch((error) => console.error("Error fetching contacts: ", error));
   }, []);
 
@@ -136,6 +142,7 @@ const ContactListContainer: React.FC = () => {
           />
         </div>
       </div>
+
       {isTableView ? (
         <div className="row">
           <div className="col-sm-10">{""}</div>
@@ -181,13 +188,21 @@ const ContactListContainer: React.FC = () => {
           </div>
         </div>
       )}
-      <ContactList
-        handleView={handleView}
-        contacts={contacts}
-        onDelete={handleDelete}
-        handleEdit={handleEdit}
-        isTableView={isTableView}
-      />
+      {error ? (
+        <div className="row">
+          <div className="text-center col-sm-12">
+            <span>Erro fetching contacts</span>
+          </div>
+        </div>
+      ) : (
+        <ContactList
+          handleView={handleView}
+          contacts={contacts}
+          onDelete={handleDelete}
+          handleEdit={handleEdit}
+          isTableView={isTableView}
+        />
+      )}
     </div>
   );
 };

@@ -4,10 +4,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { getContactById } from "../api/contactApi";
 
 export const CustomerInformation: React.FC = () => {
-  const [contact, setContact] = useState({
+  const [contact, setContact] = useState<Contact>({
     name: "",
     email: "",
-    contact_number: "",
+    contact_number: 0,
   });
   const { id } = useParams();
   useEffect(() => {

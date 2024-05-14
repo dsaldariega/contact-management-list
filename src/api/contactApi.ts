@@ -1,8 +1,18 @@
 const BASE_URL = "http://localhost:5000";
 
 export const getAllContacts = async () => {
-  const response = await fetch(`${BASE_URL}/contacts`);
-  return response.json();
+  try {
+    const response = await fetch(`${BASE_URL}/contacts`);
+    if (!response) {
+      console.log("%c Line:7 🥪 response", "color:#f5ce50", response);
+      throw new Error("Network response was not OK");
+    }
+    return response.json();
+  } catch (error) {
+    return {
+      error: "Unable to fetch data. Please try again later",
+    };
+  }
 };
 
 export const getContactById = async (id: string) => {
