@@ -1,43 +1,52 @@
+import { EyeIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
-const ContactTable = ({ contacts, onDelete, handleEdit, handleView }) => {
+const ContactTable = ({ contacts, openModalDialog }) => {
   return (
-    <div className="table-responsive">
-      <table className="table table-striped">
-        <thead>
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
           <tr>
-            <th>Name</th>
-            <th>Contact Number</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Name
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Contact Number
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Email
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Action
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white divide-y divide-gray-200">
           {contacts.map((contact) => (
             <tr key={contact.id}>
-              <td>{contact.name}</td>
-              <td>{contact.contact_number}</td>
-              <td>{contact.email}</td>
-              <td>
+              <td className="px-6 py-4 whitespace-nowrap">{contact.name}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                {contact.contact_number}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">{contact.email}</td>
+              <td className="px-6 py-4 whitespace-nowrap space-x-2">
                 <button
-                  className="btn btn-secondary"
-                  onClick={() => handleView(contact.id)}
+                  className="bg-gray-200 text-gray-700 rounded-full p-2 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                  onClick={() => openModalDialog("view", contact.id)}
                 >
-                  <i className="bi bi-eye-fill"></i>
+                  <EyeIcon className="h-5 w-5" aria-hidden="true" />
                 </button>
                 <button
-                  className="btn btn-danger ms-2"
-                  onClick={() => onDelete(contact.id)}
+                  className="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  onClick={() => openModalDialog("delete", contact.id)}
                 >
-                  <i className="bi bi-trash3"></i>
+                  <TrashIcon className="h-5 w-5" aria-hidden="true" />
                 </button>
                 <button
-                  className="btn btn-primary ms-1"
-                  onClick={() => {
-                    handleEdit(contact.id);
-                  }}
+                  className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  onClick={() => openModalDialog("edit", contact.id)}
                 >
-                  <i className="bi bi-pencil"></i>
+                  <PencilIcon className="h-5 w-5" aria-hidden="true" />
                 </button>
               </td>
             </tr>

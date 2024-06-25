@@ -1,34 +1,22 @@
 {
   "contacts": [
     {
-      "id": "2cf4",
-      "name": "asd",
-      "email": "contact2@email.com",
-      "contact_number": 12345
-    },
-    {
       "id": "3eaf",
       "name": "test",
       "email": "test@test.com",
       "contact_number": 1234
     },
     {
-      "id": "67df",
-      "name": "ewqq",
-      "email": "aaaaa@asd.com",
-      "contact_number": 1231231
+      "id": "c4fd",
+      "name": "Test",
+      "email": "Test@test.com",
+      "contact_number": "12345"
     },
     {
-      "id": "c9cb",
-      "name": "aaaaaaa",
-      "email": "aaaaa@asd.asdasdas",
-      "contact_number": "123123112123123"
-    },
-    {
-      "id": "9763",
-      "name": "asd",
-      "email": "asd@asd.com",
-      "contact_number": "1231231"
+      "id": "1517",
+      "name": "contact 1",
+      "contact_number": "12345",
+      "email": "contact1@email.com"
     }
   ]
 }

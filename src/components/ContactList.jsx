@@ -4,38 +4,28 @@ import ContactCard from "./ContactCard";
 
 const ContactList = ({
   contacts,
-  onDelete,
+  handleDelete,
   handleEdit,
   isTableView,
-  setContact,
   handleView,
+  openModalDialog,
 }) => {
   return (
-    <div className="container-fluid" style={{ margin: "4px" }}>
+    <div className="container mx-auto px-4 py-2">
       {isTableView ? (
-        <div className="row">
-          <div className="col-sm-12" style={{ border: "1px" }}>
-            <ContactTable
-              contacts={contacts}
-              onDelete={onDelete}
-              handleEdit={handleEdit}
-              handleView={handleView}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="row">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {contacts.map((contact) => (
-            <div className="col-sm-4" key={contact.id}>
+            <div key={contact.id}>
               <ContactCard
-                key={contact.id}
                 contact={contact}
-                onDelete={onDelete}
-                handleEdit={handleEdit}
-                handleView={handleView}
+                openModalDialog={openModalDialog}
               />
             </div>
           ))}
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <ContactTable contacts={contacts} openModalDialog={openModalDialog} />
         </div>
       )}
     </div>

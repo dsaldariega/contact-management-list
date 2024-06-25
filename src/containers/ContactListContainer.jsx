@@ -7,21 +7,33 @@ import {
   saveContact,
   updateContact,
 } from "../api/contactApi";
-import ContactFormContainer from "./ContactFormContainer";
 import Swal from "sweetalert2";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../layout/Header";
+import { ModalDialog } from "../components/ModalDialog";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { TableCellsIcon } from "@heroicons/react/24/outline";
+import ToastDialog from "../utils/ToastDialog";
 
 const ContactListContainer = () => {
   const [contacts, setContacts] = useState([]);
   const [isTableView, setIsTableView] = useState(true);
   const [contactId, setContactId] = useState("");
-  const [contact, setContact] = useState({
-    name: "",
-    email: "",
-    contact_number: "",
-  });
+  const [contact, setContact] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [action, setAction] = useState("");
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const openModalDialog = (action, id) => {
+    setIsModalOpen(true);
+    setAction(action);
+    setContactId(id);
+    if (action === "add") {
+      setContact({});
+    }
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,11 +53,9 @@ const ContactListContainer = () => {
   }, [contactId]);
 
   const handleEdit = async (id) => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
     try {
-      // setModalTitle("Edit Contact");
       setContactId(id);
-
       // Fetch the updated contact data
       const updatedContact = await getContactById(id);
       setContact(updatedContact);
@@ -54,16 +64,18 @@ const ContactListContainer = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!contactId) {
+  const handleSubmit = async () => {
+    if (action === "add" || !contactId) {
       // Save new contact if no ID exists
       const newContact = await saveContact(contact);
       setIsModalOpen(false);
+      setContact({});
       setContacts((prevContacts) => [...prevContacts, newContact]);
-      Swal.fire("User has been added!");
+      setToastOpen(true);
+      setToastMessage("User successfully added");
     }
-    if (contactId) {
+
+    if (action === "edit") {
       // Update existing contact if ID exists
       await updateContact(contactId, contact);
       setContacts((prevContacts) =>
@@ -71,125 +83,106 @@ const ContactListContainer = () => {
           prevContact.id === contactId ? contact : prevContact
         )
       );
-      Swal.fire("User has been updated!");
+      setIsModalOpen(false);
+      setToastOpen(true);
+      setToastMessage("User successfully updated");
     }
   };
 
-  const handleDelete = async (contactId) => {
+  const handleDelete = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-      if (result.isConfirmed) {
-        setContacts((prevContacts) =>
-          prevContacts.filter((contact) => contact.id !== contactId)
-        );
-        await deleteContact(contactId);
-        await Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
+      setContacts((prevContacts) =>
+        prevContacts.filter((contact) => contact.id !== contactId)
+      );
+      await deleteContact(contactId);
+      setIsModalOpen(false);
+      setToastOpen(true);
+      setToastMessage("User successfully deleted");
     } catch (error) {
       console.error("Error deleting contact: ", error);
     }
+  };
+
+  const handleView = (id) => {
+    setContactId(id);
+    setIsModalOpen(true);
   };
 
   const handleToggleView = () => {
     setIsTableView((prevIsTableView) => !prevIsTableView);
   };
 
-  const handleView = (id) => {
-    navigate(`/contact/${id}`);
-  };
-
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-sm-12">
-          <h2>Contacts Information</h2>
-        </div>
+    <div className="container mx-auto px-4 py-6">
+      <Header openModalDialog={openModalDialog} setAction={setAction} />
+      <div className="flex flex-col items-start">
+        <ModalDialog
+          action={action}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          contactId={contactId}
+          contacts={contacts}
+          setContacts={setContacts}
+          handleSubmit={handleSubmit}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          contact={contact}
+          setContact={setContact}
+        />
+        <ToastDialog
+          toastOpen={toastOpen}
+          setToastOpen={setToastOpen}
+          toastMessage={toastMessage}
+        />
       </div>
-      <div className="row">
-        <div className="col-sm-10">
-          <span>
-            Your list of customer appear here. To add a new contact, click on
-            the Add New Customer button.
-          </span>
-        </div>
-        <div className="col-sm-2">
-          <ContactFormContainer
-            contactId={contactId}
-            contacts={contacts}
-            setContacts={setContacts}
-            handleSubmit={handleSubmit}
-            handleEdit={handleEdit}
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            contact={contact}
-            setContact={setContact}
-          />
-        </div>
-      </div>
+
       {isTableView ? (
-        <div className="row">
-          <div className="col-sm-10">{""}</div>
-          <div className="col-sm-2">
-            <div className="btn-group" style={{ margin: "4px" }}>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleToggleView}
-              >
-                <i className="bi bi-view-list"></i>
-              </button>
-              <button
-                type="button"
-                className="btn btn-outline-secondary"
-                onClick={handleToggleView}
-              >
-                <i className="bi bi-table"></i>
-              </button>
-            </div>
+        <div className="flex justify-end mb-4">
+          <div className="flex space-x-2">
+            <button
+              type="button"
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none"
+              onClick={handleToggleView}
+            >
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="bg-gray-100 text-gray-500 px-4 py-2 rounded hover:bg-gray-200 focus:outline-none"
+              onClick={handleToggleView}
+            >
+              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
           </div>
         </div>
       ) : (
-        <div className="row">
-          <div className="col-sm-10">{""}</div>
-          <div className="col-sm-2">
-            <div className="btn-group" style={{ margin: "4px" }}>
-              <button
-                type="button"
-                className="btn btn-outline-secondary"
-                onClick={handleToggleView}
-              >
-                <i className="bi bi-view-list" />
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleToggleView}
-              >
-                <i className="bi bi-table" />
-              </button>
-            </div>
+        <div className="flex justify-end mb-4">
+          <div className="flex space-x-2">
+            <button
+              type="button"
+              className="bg-gray-100 text-gray-500 px-4 py-2 rounded hover:bg-gray-200 focus:outline-none"
+              onClick={handleToggleView}
+            >
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none"
+              onClick={handleToggleView}
+            >
+              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
           </div>
         </div>
       )}
       <ContactList
-        handleView={handleView}
         contacts={contacts}
-        onDelete={handleDelete}
+        isTableView={isTableView}
+        handleView={handleView}
+        handleDelete={handleDelete}
         handleEdit={handleEdit}
         handleToggleView={handleToggleView}
-        isTableView={isTableView}
+        openModalDialog={openModalDialog}
       />
     </div>
   );
