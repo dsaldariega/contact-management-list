@@ -26,7 +26,8 @@ const ContactCard = ({ contact, openModalDialog }) => {
         </button>
         <button
           className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md focus:outline-none"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             openModalDialog("delete", contact.id);
           }}
         >

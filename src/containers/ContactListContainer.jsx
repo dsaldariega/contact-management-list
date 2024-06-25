@@ -7,8 +7,6 @@ import {
   saveContact,
   updateContact,
 } from "../api/contactApi";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import { Header } from "../layout/Header";
 import { ModalDialog } from "../components/ModalDialog";
 import { Bars3Icon } from "@heroicons/react/24/outline";
@@ -34,8 +32,6 @@ const ContactListContainer = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     // Fetch contacts from the API when the component mounts
     getAllContacts()
@@ -51,18 +47,6 @@ const ContactListContainer = () => {
         .catch((error) => console.error("Error fetching contact: ", error));
     }
   }, [contactId]);
-
-  const handleEdit = async (id) => {
-    setIsModalOpen(false);
-    try {
-      setContactId(id);
-      // Fetch the updated contact data
-      const updatedContact = await getContactById(id);
-      setContact(updatedContact);
-    } catch (error) {
-      console.error("Error editing contact: ", error);
-    }
-  };
 
   const handleSubmit = async () => {
     if (action === "add" || !contactId) {
@@ -124,7 +108,6 @@ const ContactListContainer = () => {
           contacts={contacts}
           setContacts={setContacts}
           handleSubmit={handleSubmit}
-          handleEdit={handleEdit}
           handleDelete={handleDelete}
           contact={contact}
           setContact={setContact}
@@ -144,14 +127,14 @@ const ContactListContainer = () => {
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none"
               onClick={handleToggleView}
             >
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
             </button>
             <button
               type="button"
               className="bg-gray-100 text-gray-500 px-4 py-2 rounded hover:bg-gray-200 focus:outline-none"
               onClick={handleToggleView}
             >
-              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -163,14 +146,14 @@ const ContactListContainer = () => {
               className="bg-gray-100 text-gray-500 px-4 py-2 rounded hover:bg-gray-200 focus:outline-none"
               onClick={handleToggleView}
             >
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
             </button>
             <button
               type="button"
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none"
               onClick={handleToggleView}
             >
-              <TableCellsIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -180,7 +163,6 @@ const ContactListContainer = () => {
         isTableView={isTableView}
         handleView={handleView}
         handleDelete={handleDelete}
-        handleEdit={handleEdit}
         handleToggleView={handleToggleView}
         openModalDialog={openModalDialog}
       />

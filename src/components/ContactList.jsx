@@ -2,17 +2,10 @@ import React from "react";
 import ContactTable from "./ContactTable";
 import ContactCard from "./ContactCard";
 
-const ContactList = ({
-  contacts,
-  handleDelete,
-  handleEdit,
-  isTableView,
-  handleView,
-  openModalDialog,
-}) => {
+const ContactList = ({ contacts, isTableView, openModalDialog }) => {
   return (
     <div className="container mx-auto px-4 py-2">
-      {isTableView ? (
+      {!isTableView ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {contacts.map((contact) => (
             <div key={contact.id}>

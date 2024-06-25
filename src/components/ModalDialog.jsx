@@ -16,7 +16,6 @@ export const ModalDialog = ({
   setContact,
   handleSubmit,
   handleDelete,
-  openModalDialog,
 }) => {
   const handleChange = (e) => {
     setContact({ ...contact, [e.target.id]: e.target.value });
