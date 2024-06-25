@@ -19,7 +19,7 @@ const ContactListContainer = () => {
   const [contactId, setContactId] = useState("");
   const [contact, setContact] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [action, setAction] = useState("");
+  const [action, setAction] = useState("add");
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 

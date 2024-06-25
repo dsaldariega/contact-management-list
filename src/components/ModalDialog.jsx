@@ -20,6 +20,7 @@ export const ModalDialog = ({
   const handleChange = (e) => {
     setContact({ ...contact, [e.target.id]: e.target.value });
   };
+
   useEffect(() => {
     if (contactId) {
       // Fetch contact details if editing an existing contact
