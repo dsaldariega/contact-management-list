@@ -114,11 +114,7 @@ export const ModalDialog = ({
               <button
                 disabled={action === "view" ? true : false}
                 type="button"
-                className={`inline-flex w-full justify-center rounded-md bg-${
-                  action === "delete" ? "red" : "green"
-                }-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${
-                  action === "delete" ? "red" : "green"
-                }-500 sm:ml-3 sm:w-auto ${
+                className={`inline-flex w-full justify-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 sm:ml-3 sm:w-auto ${
                   action === "view"
                     ? "disabled:bg-gray-400 disabled:cursor-not-allowed"
                     : ""
