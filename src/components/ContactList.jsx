@@ -17,7 +17,7 @@ const ContactList = ({ contacts, isTableView, openModalDialog }) => {
           ))}
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div>
           <ContactTable contacts={contacts} openModalDialog={openModalDialog} />
         </div>
       )}
