@@ -1,16 +1,22 @@
 {
-    "contacts": [
-        {
-            "id": "0",
-            "name": "Lorem Ipsum",
-            "email": "loremipsum@email.com",
-            "contact_number": "091234567890"
-        },
-        {
-            "id": "1",
-            "name": "Ipsum Lorem",
-            "email": "ipsumlorem@email.com",
-            "contact_number": "09876543210"
-        }
-    ]
+  "contacts": [
+    {
+      "id": "3eaf",
+      "name": "test",
+      "email": "test@test.com",
+      "contact_number": 1234
+    },
+    {
+      "id": "c4fd",
+      "name": "Test",
+      "email": "Test@test.com",
+      "contact_number": "12345"
+    },
+    {
+      "id": "1517",
+      "name": "contact 1",
+      "contact_number": "12345",
+      "email": "contact1@email.com"
+    }
+  ]
 }
